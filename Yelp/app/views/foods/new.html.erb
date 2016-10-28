@@ -1,0 +1,7 @@
+<%= form_for @food do |f| %>
+
+<p><%= f.label :location %></p>
+<p><%= f.text_field :location %></p>
+
+<%= f.submit "Search yelp" %>
+<% end %>
