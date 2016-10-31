@@ -22,9 +22,9 @@ angular
     FeedMeShow
   ])
 
-  function mapFunction(){
+  function mapFunction(lat, long){
 
-    var mymap = L.map('map').setView([30.263595, -97.762695], 15);
+    var mymap = L.map('map').setView([lat, long], 15);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -46,9 +46,23 @@ angular
   }
 
   function FeedMeShow(FoodFactory, $state){
-    this.food = FoodFactory.get({id: $state.params.id})
-    console.log(this.food)
-    mapFunction(this.food)
+    var vm = this
+
+    this.food = FoodFactory.get({id: $state.params.id}, function(food){
+      vm.businessArr = food.businesses
+      vm.currentBiz = 0
+      vm.business = food.businesses[vm.currentBiz]
+      vm.name = vm.business.name
+      vm.addressArr = vm.business.location.display_address
+      vm.phone = vm.business.phone
+      vm.lat = vm.business.location.coordinate.latitude
+      vm.long = vm.business.location.coordinate.longitude
+      console.log(vm.lat, vm.long)
+
+      console.log("this is the response food", food.businesses)
+
+      mapFunction(vm.lat, vm.long)
+    })
   }
 
   function FoodFactory($resource){
