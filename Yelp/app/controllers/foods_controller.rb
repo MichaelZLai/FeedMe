@@ -21,14 +21,16 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.create!(food_params)
+    puts @food.id
     @params = {term: 'food', limit: 20}
-    @results = render json: Yelp.client.search(@food.location, @params )
+    @results = Yelp.client.search(@food.location, @params )
+    render json: @food
   end
 
   def new
     @food = Food.new
   end
-  
+
  private
  def food_params
    params.require(:food).permit(:location)

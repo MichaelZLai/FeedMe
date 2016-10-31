@@ -1,7 +1,7 @@
-$(".submit").on("click", () => {
-  const searchTerm = $("#restaurant-search").val()
-  const apiUrl = "http://localhost:3000/foods/new"
-  console.log("submit worked")
+// $(".submit").on("click", () => {
+//   const searchTerm = $("#restaurant-search").val()
+//   const apiUrl = "http://localhost:3000/foods/new"
+//   console.log("submit worked")
       // $.ajax({
       //   type: "POST",
       //   dataType: "json",
@@ -14,4 +14,4 @@ $(".submit").on("click", () => {
       // }).fail((response) => {
       //   console.log("fail", response)
       // })
-  })
+  // })
