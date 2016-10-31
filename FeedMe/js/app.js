@@ -8,18 +8,39 @@ angular
     Router
   ])
   .controller("FeedMeIndexCtrl",[
+    "foodFactory",
+    "$state",
     FeedMeIndex
   ])
   .controller("FeedMeShowCtrl",[
+    "foodFactory",
+    "$state",
     FeedMeShow
   ])
+  .factory("foodFactory", [
+    "$resource",
+    Factory
+  ])
 
-  function FeedMeIndex(){
-    console.log("hello")
-  }
-  function FeedMeShow(){
-    console.log("This is the show page!")
-  }
+  function FeedMeIndex(foodFactory, $state){
+    this.food = new foodFactory()
+    this.create = function(){
+    this.food.$save().then(function(food){
+    $state.go("show",{id: food.id})
+  })
+}
+}
+
+  function FeedMeShow(foodFactory, $state){
+    this.food = foodFactory.get({id: $state.params.id})
+}
+
+
+  function Factory($resource){
+      return $resource("http://localhost:3000/foods/:id", {}, {
+        update: {method: "PUT"}
+      })
+    }
 
   function Router($stateProvider){
     $stateProvider
@@ -30,7 +51,7 @@ angular
       controllerAs: "vm"
     })
     .state("show",{
-      url: "/feeded",
+      url: "/feeded/:id",
       templateUrl: "js/ng-views/show.html",
       controller: "FeedMeShowCtrl",
       controllerAs: "vm"
