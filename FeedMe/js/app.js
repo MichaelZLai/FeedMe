@@ -10,17 +10,29 @@ angular
   .controller("FeedMeIndexCtrl",[
     FeedMeIndex
   ])
+  .controller("FeedMeShowCtrl",[
+    FeedMeShow
+  ])
 
   function FeedMeIndex(){
     console.log("hello")
+  }
+  function FeedMeShow(){
+    console.log("This is the show page!")
   }
 
   function Router($stateProvider){
     $stateProvider
     .state("index",{
-      url: "/",
-      templateUrl: "ng-views/index.html",
+      url: "/feedme",
+      templateUrl: "js/ng-views/index.html",
       controller: "FeedMeIndexCtrl",
+      controllerAs: "vm"
+    })
+    .state("show",{
+      url: "/feeded",
+      templateUrl: "js/ng-views/show.html",
+      controller: "FeedMeShowCtrl",
       controllerAs: "vm"
     })
   }
