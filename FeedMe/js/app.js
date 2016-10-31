@@ -27,14 +27,13 @@ angular
     this.create = function(){
     this.food.$save().then(function(food){
     $state.go("show",{id: food.id})
-  })
-}
-}
+      })
+    }
+  }
 
   function FeedMeShow(foodFactory, $state){
     this.food = foodFactory.get({id: $state.params.id})
-}
-
+  }
 
   function Factory($resource){
       return $resource("http://localhost:3000/foods/:id", {}, {
