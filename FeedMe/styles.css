@@ -1,4 +1,15 @@
 *{
   margin: 0;
+}
+
+#map{
+  margin: auto;
+  width: 75%;
+  height: 25rem;
+}
+
+
+#location{
+  margin-top: 2rem;
   text-align: center;
 }
