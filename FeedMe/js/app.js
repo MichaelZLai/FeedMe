@@ -8,12 +8,21 @@ angular
     Router
   ])
   .controller("FeedMeIndexCtrl",[
+    "foodFactory",
+    "$state",
     FeedMeIndex
   ])
   .controller("FeedMeShowCtrl",[
+    "foodFactory",
+    "$state",
     FeedMeShow
   ])
+  .factory("foodFactory", [
+    "$resource",
+    Factory
+  ])
 
+<<<<<<< HEAD
   function mapFunction(){
     console.log("here");
     // mapboxgl.accessToken = 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q';
@@ -37,13 +46,32 @@ angular
     .addTo(mymap);
   }
 
-  function FeedMeIndex(){
-    console.log("hello")
-  }
+
   function FeedMeShow(){
-    mapFunction()
     console.log("This is the show page!")
   }
+=======
+  function FeedMeIndex(foodFactory, $state){
+    this.food = new foodFactory()
+    this.create = function(){
+    this.food.$save().then(function(food){
+    $state.go("show",{id: food.id})
+  })
+}
+}
+
+  function FeedMeShow(foodFactory, $state){
+    mapFunction()
+    this.food = foodFactory.get({id: $state.params.id})
+}
+
+
+  function Factory($resource){
+      return $resource("http://localhost:3000/foods/:id", {}, {
+        update: {method: "PUT"}
+      })
+    }
+>>>>>>> e0baf07be00ae16fee992074f5957478b6a0113b
 
   function Router($stateProvider){
     $stateProvider
@@ -54,7 +82,7 @@ angular
       controllerAs: "vm"
     })
     .state("show",{
-      url: "/feeded",
+      url: "/feeded/:id",
       templateUrl: "js/ng-views/show.html",
       controller: "FeedMeShowCtrl",
       controllerAs: "vm"
