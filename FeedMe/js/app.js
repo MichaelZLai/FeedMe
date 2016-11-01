@@ -25,7 +25,7 @@ angular
   function mapFunction(lat, long){
 
     var mymap = L.map('map').setView([lat, long], 15);
-
+      console.log("testing variable mymap",mymap)
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
@@ -60,7 +60,7 @@ angular
 
     this.getNextBiz = function() {
       vm.currentBiz++;
-      if (vm.currentBiz == vm.maxBiz) {
+      if (vm.currentBiz === vm.maxBiz) {
         console.log( "Max Business Length Reached")
         return true;
       }
@@ -73,7 +73,7 @@ angular
 
     this.food = FoodFactory.get({id: $state.params.id}, function(food){
       vm.businessArr = food.businesses
-      vm.maxBiz=vm.businessArr.lenght
+      vm.maxBiz=vm.businessArr.length
       vm.currentBiz = 0
       vm.setBizVars(vm.currentBiz)
     })
