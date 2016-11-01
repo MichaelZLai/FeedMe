@@ -9,13 +9,11 @@ class FoodsController < ApplicationController
     @food = Food.find(params[:id])
     @params = {term: 'food', limit: 20}
     @results = render json: Yelp.client.search(@food.location, @params )
-    puts @food
   end
 
 
   def create
     @food = Food.create!(food_params)
-    puts @food.id
     @params = {term: 'food', limit: 20}
     @results = Yelp.client.search(@food.location, @params )
     render json: @food
