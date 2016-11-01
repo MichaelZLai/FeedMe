@@ -1,4 +1,3 @@
-// var map
 angular
   .module("feedme",[
     "ngResource",
@@ -33,25 +32,59 @@ angular
       center: [long, lat], // starting position
       zoom: 15 // starting zoom
     });
-    // var el = document.createElement('div');
-    //   el.className = 'marker';
-    //   el.style.backgroundImage = 'url('+img_url+')';
 
-    var marker = new mapboxgl.Marker()
-    	.setLngLat([long, lat])
-    	.addTo(map);
-  //   map = map || L.map('map').setView([lat, long], 15)
-  //   var marker = L.marker ([lat, long]).addTo(map)
-  //
-  //   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-  //     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-  //     maxZoom: 18,
-  //     id: 'marks828.207gggg3',
-  //     accessToken: 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q'
-  //   })
-  //
-  //   .addTo(map);
-  }
+    // Add Markers
+    var geojson = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "message": "foo",
+                    "iconSize": [30, 30]
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        long,
+                        lat
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "message": "foo",
+                    "iconSize": [30, 30]
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        long,
+                        lat
+                    ]
+                }
+            }
+        ]
+    };
+    geojson.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.style.backgroundImage = 'url('+img_url+')';
+    el.style.width = marker.properties.iconSize[0] + 'px';
+    el.style.height = marker.properties.iconSize[1] + 'px';
+
+    // el.addEventListener('click', function() {
+    //     window.alert(marker.properties.message);
+    // });
+
+    // add marker to map
+    new mapboxgl.Marker(el, {offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]})
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+});
+}
 
   function FeedMeNew(FoodFactory, $state){
     this.food = new FoodFactory()
@@ -81,7 +114,8 @@ angular
       vm.lat = vm.business.location.coordinate.latitude
       vm.long = vm.business.location.coordinate.longitude
       vm.url = vm.business.url
-      mapFunction(vm.long, vm.lat, vm.url)
+      vm.img_url = vm.business.image_url
+      mapFunction(vm.long, vm.lat, vm.img_url)
 
     } /* function setBizVars */
 
