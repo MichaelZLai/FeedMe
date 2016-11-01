@@ -1,4 +1,6 @@
 var map
+var marker
+
 angular
   .module("feedme",[
     "ngResource",
@@ -23,23 +25,22 @@ angular
     FeedMeShow
   ])
 
-  function mapFunction(lat, long){
-    map = map || L.map('map').setView([lat, long], 15);
-    var marker = L.marker ([lat, long]).addTo(map)
-    // var popup = L.popup()
-    // .setLatLng([lat, long])
-    // .setContent("hello")
-    // .openOn(mymap)
-      console.log("testing variable mymap",map)
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 18,
-      id: 'marks828.207gggg3',
-      accessToken: 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q'
-    })
-
+  function mapFunction(long, lat){
+    // map = map || L.map('map').setView([lat, long], 15);
+    console.log("testing variable mymap")
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q';
+    map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+        center: [long, lat], // starting position
+        zoom: 15 // starting zoom
+    });
+    marker = new mapboxgl.Marker()
+    .setLngLat([long, lat])
     .addTo(map);
-  }
+    // map.addControl(new mapboxgl.Directions)
+}
+
 
   function FeedMeNew(FoodFactory, $state){
     this.food = new FoodFactory()
@@ -59,8 +60,9 @@ angular
       vm.phone = vm.business.phone
       vm.lat = vm.business.location.coordinate.latitude
       vm.long = vm.business.location.coordinate.longitude
+      console.log(vm.long);
       vm.url = vm.business.url
-      mapFunction(vm.lat, vm.long)
+      mapFunction(vm.long, vm.lat)
 
     } /* function setBizVars */
 
