@@ -24,7 +24,7 @@ angular
 
 
 
-  function mapFunction(long, lat, img_url){
+  function mapFunction(long, lat,img_url,business){
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q';
     var map = new mapboxgl.Map({
       container: 'map', // container id
@@ -32,6 +32,7 @@ angular
       center: [long, lat], // starting position
       zoom: 15 // starting zoom
     });
+    console.log("in map function",business)
 
     // Add Markers
     var geojson = {
@@ -72,16 +73,15 @@ angular
     var el = document.createElement('div');
     el.className = 'marker';
     el.style.backgroundImage = 'url('+img_url+')';
+    var popup = new mapboxgl.Popup({offset:[0, -30]})
+    .setText('test here, addres sis this');
     el.style.width = marker.properties.iconSize[0] + 'px';
     el.style.height = marker.properties.iconSize[1] + 'px';
-
-    // el.addEventListener('click', function() {
-    //     window.alert(marker.properties.message);
-    // });
 
     // add marker to map
     new mapboxgl.Marker(el, {offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]})
         .setLngLat(marker.geometry.coordinates)
+        .setPopup(popup)
         .addTo(map);
 });
 }
@@ -115,7 +115,7 @@ angular
       vm.long = vm.business.location.coordinate.longitude
       vm.url = vm.business.url
       vm.img_url = vm.business.image_url
-      mapFunction(vm.long, vm.lat, vm.img_url)
+      mapFunction(vm.long, vm.lat, vm.img_url, vm.business)
 
     } /* function setBizVars */
 
