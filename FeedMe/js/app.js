@@ -1,3 +1,4 @@
+var map
 angular
   .module("feedme",[
     "ngResource",
@@ -23,9 +24,13 @@ angular
   ])
 
   function mapFunction(lat, long){
-
-    var mymap = L.map('map').setView([lat, long], 15);
-      console.log("testing variable mymap",mymap)
+    map = map || L.map('map').setView([lat, long], 15);
+    var marker = L.marker ([lat, long]).addTo(map)
+    // var popup = L.popup()
+    // .setLatLng([lat, long])
+    // .setContent("hello")
+    // .openOn(mymap)
+      console.log("testing variable mymap",map)
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
@@ -33,7 +38,7 @@ angular
       accessToken: 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q'
     })
 
-    .addTo(mymap);
+    .addTo(map);
   }
 
   function FeedMeNew(FoodFactory, $state){
@@ -47,7 +52,6 @@ angular
 
   function FeedMeShow(FoodFactory, $state){
     var vm = this
-
     this.setBizVars = function (biz) {
       vm.business = vm.businessArr[biz]
       vm.name = vm.business.name
@@ -57,8 +61,10 @@ angular
       vm.long = vm.business.location.coordinate.longitude
       vm.url = vm.business.url
       mapFunction(vm.lat, vm.long)
+
     } /* function setBizVars */
 
+    // no button function
     this.getNextBiz = function() {
       vm.currentBiz++;
       if (vm.currentBiz === vm.maxBiz) {
