@@ -23,7 +23,6 @@ angular
   ])
 
   function mapFunction(lat, long){
-
     var mymap = L.map('map').setView([lat, long], 15);
       console.log("testing variable mymap",mymap)
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -34,6 +33,9 @@ angular
     })
 
     .addTo(mymap);
+  }
+  function addTileLayer(){
+
   }
 
   function FeedMeNew(FoodFactory, $state){
@@ -47,6 +49,12 @@ angular
 
   function FeedMeShow(FoodFactory, $state){
     var vm = this
+    this.food = FoodFactory.get({id: $state.params.id}, function(food){
+      vm.businessArr = food.businesses
+      vm.maxBiz=vm.businessArr.length
+      vm.currentBiz = 0
+      vm.setBizVars(vm.currentBiz)
+    })
 
     this.setBizVars = function (biz) {
       vm.business = vm.businessArr[biz]
@@ -69,16 +77,9 @@ angular
         vm.setBizVars(vm.currentBiz)
         return false
       }
+    }
+  }
 
-    } /* function getNextBiz */
-
-    this.food = FoodFactory.get({id: $state.params.id}, function(food){
-      vm.businessArr = food.businesses
-      vm.maxBiz=vm.businessArr.length
-      vm.currentBiz = 0
-      vm.setBizVars(vm.currentBiz)
-    })
-  } /* feedMeShow */
 
   function FoodFactory($resource){
       return $resource("http://localhost:3000/foods/:id", {}, {
