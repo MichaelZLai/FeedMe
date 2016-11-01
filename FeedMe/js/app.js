@@ -55,6 +55,7 @@ angular
       vm.phone = vm.business.phone
       vm.lat = vm.business.location.coordinate.latitude
       vm.long = vm.business.location.coordinate.longitude
+      vm.url = vm.business.url
       mapFunction(vm.lat, vm.long)
     } /* function setBizVars */
 
