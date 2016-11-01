@@ -48,22 +48,36 @@ angular
   function FeedMeShow(FoodFactory, $state){
     var vm = this
 
-    this.food = FoodFactory.get({id: $state.params.id}, function(food){
-      vm.businessArr = food.businesses
-      vm.currentBiz = 0
-      vm.business = food.businesses[vm.currentBiz]
+    this.setBizVars = function (biz) {
+      vm.business = vm.businessArr[biz]
       vm.name = vm.business.name
       vm.addressArr = vm.business.location.display_address
       vm.phone = vm.business.phone
       vm.lat = vm.business.location.coordinate.latitude
       vm.long = vm.business.location.coordinate.longitude
-      console.log(vm.lat, vm.long)
-
-      console.log("this is the response food", food.businesses)
-
       mapFunction(vm.lat, vm.long)
+    } /* function setBizVars */
+
+    this.getNextBiz = function() {
+      vm.currentBiz++;
+      if (vm.currentBiz == vm.maxBiz) {
+        console.log( "Max Business Length Reached")
+        return true;
+      }
+      else {
+        vm.setBizVars(vm.currentBiz)
+        return false
+      }
+
+    } /* function getNextBiz */
+
+    this.food = FoodFactory.get({id: $state.params.id}, function(food){
+      vm.businessArr = food.businesses
+      vm.maxBiz=vm.businessArr.lenght
+      vm.currentBiz = 0
+      vm.setBizVars(vm.currentBiz)
     })
-  }
+  } /* feedMeShow */
 
   function FoodFactory($resource){
       return $resource("http://localhost:3000/foods/:id", {}, {
