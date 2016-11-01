@@ -112,12 +112,9 @@ angular
       vm.long = vm.business.location.coordinate.longitude
       console.log(vm.long);
       vm.url = vm.business.url
-<<<<<<< HEAD
-      mapFunction(vm.long, vm.lat)
-=======
+
       vm.img_url = vm.business.image_url
       mapFunction(vm.long, vm.lat, vm.img_url, vm.business)
->>>>>>> 5a50d9a280ff11785bda301dbcfc3c9572c02949
 
     } /* function setBizVars */
 
