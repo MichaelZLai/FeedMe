@@ -25,9 +25,8 @@ angular
     FeedMeShow
   ])
 
-  function mapFunction(long, lat){
-    // map = map || L.map('map').setView([lat, long], 15);
-    console.log("testing variable mymap")
+
+  function mapFunction(long, lat,img_url,business){
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q';
     map = new mapboxgl.Map({
         container: 'map', // container id
@@ -39,6 +38,57 @@ angular
     // .setLngLat([long, lat])
     // .addTo(map);
     // map.addControl(new mapboxgl.Directions)
+    console.log("in map function",business)
+    // Add Markers
+    var geojson = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "message": "foo",
+                    "iconSize": [30, 30]
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        long,
+                        lat
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "message": "foo",
+                    "iconSize": [30, 30]
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        long,
+                        lat
+                    ]
+                }
+            }
+        ]
+    };
+    geojson.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.style.backgroundImage = 'url('+img_url+')';
+    var popup = new mapboxgl.Popup({offset:[0, -30]})
+    .setText('test here, addres sis this');
+    el.style.width = marker.properties.iconSize[0] + 'px';
+    el.style.height = marker.properties.iconSize[1] + 'px';
+
+    // add marker to map
+    new mapboxgl.Marker(el, {offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]})
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(popup)
+        .addTo(map);
+});
 }
 
 
@@ -62,7 +112,12 @@ angular
       vm.long = vm.business.location.coordinate.longitude
       console.log(vm.long);
       vm.url = vm.business.url
+<<<<<<< HEAD
       mapFunction(vm.long, vm.lat)
+=======
+      vm.img_url = vm.business.image_url
+      mapFunction(vm.long, vm.lat, vm.img_url, vm.business)
+>>>>>>> 5a50d9a280ff11785bda301dbcfc3c9572c02949
 
     } /* function setBizVars */
 
