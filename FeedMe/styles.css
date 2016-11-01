@@ -94,11 +94,18 @@ p{
   color:white;
 }
 #map{
-  /*margin: auto;*/
   width: 85%;
   height: 25rem;
 }
 
+
 .restaurant_details{
   text-align: center
+}
+.marker {
+    display: block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
 }

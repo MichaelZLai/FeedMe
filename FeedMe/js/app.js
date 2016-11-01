@@ -35,9 +35,9 @@ angular
         center: [long, lat], // starting position
         zoom: 15 // starting zoom
     });
-    marker = new mapboxgl.Marker()
-    .setLngLat([long, lat])
-    .addTo(map);
+    // marker = new mapboxgl.Marker()
+    // .setLngLat([long, lat])
+    // .addTo(map);
     // map.addControl(new mapboxgl.Directions)
 }
 
