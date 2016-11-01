@@ -5,12 +5,6 @@ class FoodsController < ApplicationController
     render json: @foods
   end
 
-  # def search(location)
-  #   params.merge!({location: location})
-  #
-  #   Response::Search.new(JSON.parse(search_request(params).body))
-  # end
-
   def show
     @food = Food.find(params[:id])
     @params = {term: 'food', limit: 20}
