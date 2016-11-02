@@ -86,7 +86,7 @@ angular
     }
   }
 
-  function FeedMeShow(FoodFactory, $state){
+  function FeedMeShow(FoodFactory,VisitFactory, $state){
     var vm = this
     //Dont Mind Me, I'm just a bunch of references
     this.setBizVars = function (biz) {
@@ -100,6 +100,16 @@ angular
       vm.img_url = vm.business.image_url
       mapFunction(vm.long, vm.lat, vm.img_url, vm.addressArr,vm.name, vm.phone)
 
+    }
+
+    //yes button function ()
+    this.visit = new VisitFactory()
+    this.sendVisit = function(){
+      console.log("sendVisit function clicked")
+      this.visit.$save({name: vm.name}).then(function(){
+        console.log("this is the name saved", vm.name)
+        $state.go("new")
+      })
     }
 
     // no button function (reiterates through different array for businesses)
@@ -123,9 +133,15 @@ angular
       vm.setBizVars(vm.currentBiz)
     })
   }
-
+  //initial ajax call to our api for yelp data
   function FoodFactory($resource){
       return $resource("http://localhost:3000/foods/:id", {}, {
+        update: {method: "PUT"}
+      })
+    }
+  //send yes information to visits table in our api
+  function VisitFactory($resource){
+      return $resource("http://localhost:3000/visits/:id", {}, {
         update: {method: "PUT"}
       })
     }
