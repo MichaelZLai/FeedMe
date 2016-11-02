@@ -26,7 +26,7 @@ angular
   ])
 
 
-  function mapFunction(long, lat,img_url,business){
+  function mapFunction(long, lat,img_url,address,name,phone){
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q';
     map = new mapboxgl.Map({
         container: 'map', // container id
@@ -34,29 +34,10 @@ angular
         center: [long, lat], // starting position
         zoom: 15 // starting zoom
     });
-    // marker = new mapboxgl.Marker()
-    // .setLngLat([long, lat])
-    // .addTo(map);
-    // map.addControl(new mapboxgl.Directions)
-    console.log("in map function",business)
-    // Add Markers
+    // Define Marker geolocation
     var geojson = {
         "type": "FeatureCollection",
         "features": [
-            {
-                "type": "Feature",
-                "properties": {
-                    "message": "foo",
-                    "iconSize": [30, 30]
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        long,
-                        lat
-                    ]
-                }
-            },
             {
                 "type": "Feature",
                 "properties": {
@@ -79,7 +60,7 @@ angular
     el.className = 'marker';
     el.style.backgroundImage = 'url('+img_url+')';
     var popup = new mapboxgl.Popup({offset:[0, -30]})
-    .setText('test here, addres sis this');
+    .setHTML(`<p>${name}</p><p>${address}</p><p>${phone}</p>`);
     el.style.width = marker.properties.iconSize[0] + 'px';
     el.style.height = marker.properties.iconSize[1] + 'px';
 
@@ -103,6 +84,7 @@ angular
 
   function FeedMeShow(FoodFactory, $state){
     var vm = this
+    //Dont Mind Me, I'm just a bunch of references
     this.setBizVars = function (biz) {
       vm.business = vm.businessArr[biz]
       vm.name = vm.business.name
@@ -110,15 +92,13 @@ angular
       vm.phone = vm.business.phone
       vm.lat = vm.business.location.coordinate.latitude
       vm.long = vm.business.location.coordinate.longitude
-      console.log(vm.long);
       vm.url = vm.business.url
-
       vm.img_url = vm.business.image_url
-      mapFunction(vm.long, vm.lat, vm.img_url, vm.business)
+      mapFunction(vm.long, vm.lat, vm.img_url, vm.addressArr,vm.name, vm.phone)
 
-    } /* function setBizVars */
+    }
 
-    // no button function
+    // no button function (reiterates through different array for businesses)
     this.getNextBiz = function() {
       vm.currentBiz++;
       if (vm.currentBiz === vm.maxBiz) {
@@ -130,15 +110,15 @@ angular
         return false
       }
 
-    } /* function getNextBiz */
-
+    }
+    //Initialize the retrieval of the Yelp businesses array from our API
     this.food = FoodFactory.get({id: $state.params.id}, function(food){
       vm.businessArr = food.businesses
       vm.maxBiz=vm.businessArr.length
       vm.currentBiz = 0
       vm.setBizVars(vm.currentBiz)
     })
-  } /* feedMeShow */
+  }
 
   function FoodFactory($resource){
       return $resource("http://localhost:3000/foods/:id", {}, {
