@@ -1,2 +1,3 @@
 class Visit < ApplicationRecord
+  
 end

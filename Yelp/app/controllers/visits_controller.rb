@@ -2,10 +2,11 @@ class VisitsController < ApplicationController
 
 
   def create
-    @visit = Visit.increment!(:count).find_or_create_by(visit_params)
+    @visit = Visit.find_or_create_by(visit_params)
+    @visit.increment!(:count,1)
     # @visit.save!
 
-    puts @visit
+    render json: @visit
 
   #   if @visit.exists?
   #     @visit.count += 1
@@ -20,6 +21,6 @@ class VisitsController < ApplicationController
 
  private
  def visit_params
-   params.permit(:name,:address,:yelp_id,:phone,:count)
+   params.permit(:name,:address,:yelp_id,:phone)
  end
 end
