@@ -9,6 +9,6 @@ class VisitsController < ApplicationController
 
  private
  def visit_params
-   params.require(:visit).permit(:name)
+   params.permit(:name)
  end
 end

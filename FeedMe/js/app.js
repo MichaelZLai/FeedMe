@@ -98,6 +98,7 @@ angular
       vm.long = vm.business.location.coordinate.longitude
       vm.url = vm.business.url
       vm.img_url = vm.business.image_url
+      vm.yelp_id = vm.business.id
       mapFunction(vm.long, vm.lat, vm.img_url, vm.addressArr,vm.name, vm.phone)
 
     }
@@ -105,9 +106,7 @@ angular
     //yes button function ()
     this.visit = new VisitFactory()
     this.sendVisit = function(){
-      console.log("sendVisit function clicked")
-      this.visit.$save({name: vm.name}).then(function(){
-        console.log("this is the name saved", vm.name)
+      this.visit.$save({name: vm.name, address: vm.addressArr.join, phone: vm.phone,yelp_id: vm.yelp_id,count:1,console.log(vm.addressArr.join) }).then(function(){
         $state.go("new")
       })
     }
