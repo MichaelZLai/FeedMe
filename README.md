@@ -1,7 +1,7 @@
 # README
 
 
-# FeedMe - GA WDI-12 Project 3 By Group 8 Michael Lai, Mark Sweet, Mike Rubin
+# FeedMe - GA WDI-12 Project 3 By Group 8: Michael Lai, Mark Sweet, Mike Rubin
 
 FeedMe is a full-stack web application project featuring a Ruby on Rails Back-end with an Angular Front-end.  The requirements were to architect, design, and collaboratively build as a group project, an app with two major components:
 
@@ -10,7 +10,7 @@ FeedMe is a full-stack web application project featuring a Ruby on Rails Back-en
 
 The FeedMe application enables users to quickly find nearby, food restaurants.  Restaurants are presented to the user along with a location map showing the restaurant proximity to the user.  The user can indicate yes to their acceptance to this selection or select no and to be shown alternate selections.  Additionally a popup message box with address and phone information is available by clicking on the icon in the map.
 
-The back-end application provides a proxy-server to Yelp to feed the front-end for the restaurant information.  Map-Box is used on the Front-end to provide mapping information.
+The back-end application provides a proxy-server to Yelp to feed the front-end for the restaurant information.  Mapbox is used on the Front-end to provide mapping information.
 
 
 
@@ -26,13 +26,13 @@ The back-end application provides a proxy-server to Yelp to feed the front-end f
 ### Technologies Used
 
 * Postgresql relational database
-* Ruby on Rails - back-end
-* Angular-JS - Front-end
+* Ruby on Rails - Back-end
+* Angular.js - Front-end
 * HTML was used only for structuring content.
 * CSS was used for applying all visual styles.
 * JQuery
 * Yelp Search API
-* Map-Box API
+* Mapbox API
 
 
 ### Installing
@@ -77,17 +77,17 @@ http://localhost:8080/#/feedme
 
 [3] A initial design of the front-end user interface was discussed and how each of the API's would be used.
 
-[4] It was decided that the back-end would communicate with Yelp as a proxy-server to our front-end.  The front-end would use the Map-Box API directly since the back-end had no need.
+[4] It was decided that the back-end would communicate with Yelp as a proxy-server to our front-end.  The front-end would use MapBox's API directly with the array of businesses since the back-end had no need.
 
-[5] Initial work on the Map-Box interface was done by Mark Sweet.  Michael Lai did the initial Yelp Interface API investigation. Michael Rubin did work on the front-end switching to Next restaurant views.  During the coding, several different decisions were made as to which api set of the Map-Box interface.  Initial work with Map-Box began with the leaflet subset API set. Later the decision to use the newer Map-Box api set.
+[5] Initial work on the Mapbox interface was done by Mark Sweet.  Michael Lai did the initial Yelp Interface API investigation. Michael Rubin did work on the front-end switching to Next restaurant views.  During the coding, several different decisions were made as to which api set of the Mapbox interface.  Initial work with Mapbox began with the leaflet subset API set. Later the decision to use the newer Mapbox api set.
 
-[6]As a group, morning stand-up status meetings were conducted to focus on what we would work on.  At noon a progress meeting was held to continue to refine the team's direction.  At the end of each day a review of day's status and progress.
+[6]As a group, morning scrum status meetings were conducted to report on development, roadblocks, and status.  At noon a progress meeting was held to continue to refine the team's direction.  At the end of each day a review of day's status and progress.
 
 
 ## Future Features
 * UI Enhancements
 - Pre-loader - an message or GIF image showing Loading during search of Yelp API
-- Directions - the Map-Box functionality will be expanded to include directions from the current location to the restaurant.
+- Directions - the Mapbox functionality will be expanded to include directions from the current location to the restaurant.
 - Confirmation Page - After a Yes selection, a page or message will be sent back to the user to enjoy their meal.
 - Marker Improvements - Ratings, and pictures will be added to marker popup. The phone number will be properly formatted.
 - Revolving Background - A background image based on restaurant cuisine will be displayed
