@@ -107,7 +107,7 @@ angular
     //yes button function (logs the current business into our visits database)
     this.visit = new VisitFactory()
     this.sendVisit = function(){
-      this.visit.$save({name: vm.name,address:vm.addressJoin, phone: vm.phone,yelp_id: vm.yelp_id }).then(function(){
+      this.visit.$save({name: vm.name, address:vm.addressJoin, phone: vm.phone, yelp_id: vm.yelp_id }).then(function(){
         $state.go("new")
       })
     }
