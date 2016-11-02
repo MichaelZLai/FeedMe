@@ -1,5 +1,4 @@
 var map
-var marker
 
 angular
   .module("feedme",[
@@ -14,6 +13,10 @@ angular
     "$resource",
     FoodFactory
   ])
+  .factory("VisitFactory", [
+    "$resource",
+    VisitFactory
+  ])
   .controller("FeedMeNewCtrl",[
     "FoodFactory",
     "$state",
@@ -21,6 +24,7 @@ angular
   ])
   .controller("FeedMeShowCtrl",[
     "FoodFactory",
+    "VisitFactory",
     "$state",
     FeedMeShow
   ])
