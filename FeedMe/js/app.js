@@ -93,6 +93,7 @@ angular
       vm.business = vm.businessArr[biz]
       vm.name = vm.business.name
       vm.addressArr = vm.business.location.display_address
+      vm.addressJoin = vm.addressArr.join(' ')
       vm.phone = vm.business.phone
       vm.lat = vm.business.location.coordinate.latitude
       vm.long = vm.business.location.coordinate.longitude
@@ -106,7 +107,7 @@ angular
     //yes button function ()
     this.visit = new VisitFactory()
     this.sendVisit = function(){
-      this.visit.$save({name: vm.name, address: vm.addressArr.join, phone: vm.phone,yelp_id: vm.yelp_id,count:1,console.log(vm.addressArr.join) }).then(function(){
+      this.visit.$save({name: vm.name, phone: vm.phone,yelp_id: vm.yelp_id,count:1 },console.log(vm.addressJoin,vm.yelp_id)).then(function(){
         $state.go("new")
       })
     }

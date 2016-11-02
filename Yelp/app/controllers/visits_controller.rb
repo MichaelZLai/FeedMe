@@ -9,6 +9,6 @@ class VisitsController < ApplicationController
 
  private
  def visit_params
-   params.permit(:name)
+   params.permit(:name,:address,:yelp_id,:phone,:count)
  end
 end
