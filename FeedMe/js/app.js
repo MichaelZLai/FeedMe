@@ -36,7 +36,7 @@ angular
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
         center: [long, lat], // starting position
-        zoom: 15 // starting zoom
+        zoom: 14 // starting zoom
     });
     // Define Marker geolocation
     var geojson = {
