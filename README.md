@@ -10,7 +10,7 @@ FeedMe is a full-stack web application project featuring a Ruby on Rails Back-en
 
 The FeedMe application enables users to quickly find nearby, food restaurants.  Restaurants are presented to the user along with a location map showing the restaurant proximity to the user.  The user can indicate yes to their acceptance to this selection or select no and to be shown alternate selections.  Additionally a popup message box with address and phone information is available by clicking on the icon in the map.
 
-The back-end application provides a proxy-server to Yelp to feed the front-end for the restaurant information.  Mapbox is used on the Front-end to provide mapping information.
+The back-end application provides a proxy-API to Yelp to feed the front-end for the restaurant information.  Mapbox is used on the Front-end to provide mapping information.
 
 
 
@@ -95,7 +95,7 @@ http://localhost:8080/#/feedme
 
 [3] A initial design of the front-end user interface was discussed and how each of the API's would be used.
 
-[4] It was decided that the back-end would communicate with Yelp as a proxy-server to our front-end.  The front-end would use MapBox's API directly with the array of businesses since the back-end had no need.
+[4] It was decided that the back-end would communicate with Yelp as a proxy-api to our front-end.  The front-end would use MapBox's API directly with the array of businesses since the back-end had no need.
 
 [5] Initial work on the Mapbox interface was done by Mark Sweet.  Michael Lai did the initial Yelp Interface API investigation. Mike Rubin did work on the front-end switching to Next restaurant views.  During the coding, several different decisions were made as to which api set of the Mapbox interface.  Initial work with Mapbox began with the leaflet subset API set. Later the decision to use the newer Mapbox api set. As the project progressed, Mark initially worked on deployment which was turned over to Mike.  Michael continued working on CSS and looked at adding additional functionality.  Mike completed project documentation and deployment instructions.  
 
