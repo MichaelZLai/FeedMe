@@ -29,7 +29,6 @@ angular
     FeedMeShow
   ])
 
-
   function mapFunction(long, lat,img_url,address,name,phone,rating_url){
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFya3M4MjgiLCJhIjoiY2l1dTZ0eG9vMDJhMzJ5b2VwdWpjbHJmeSJ9.pI-acZvMrbtOHhfSaui34Q';
     map = new mapboxgl.Map({
@@ -73,7 +72,8 @@ angular
     new mapboxgl.Marker(el, {offset: [-marker.properties.iconSize[0] / 2, -marker.properties.iconSize[1] / 2]})
         .setLngLat(marker.geometry.coordinates)
         .setPopup(popup)
-        .addTo(map);
+        .addTo(map)
+
 });
 }
 
@@ -85,6 +85,13 @@ angular
         $state.go("show",{id: food.id})
       })
     }
+  }
+
+  function loader(){pleaseWait({
+      logo: "http://emojipaste.com/assets/img/emoji/1f606.png",
+      backgroundColor: 'lightblue',
+      loadingHtml: "<h3>A good day to you fine user!</h3>"
+    }).finish()
   }
 
   function FeedMeShow(FoodFactory,VisitFactory, $state){
@@ -104,13 +111,16 @@ angular
       vm.yelp_id = vm.business.id
       vm.r_img_url = vm.business.rating_img_url
       mapFunction(vm.long, vm.lat, vm.img_url, vm.addressArr,vm.name, vm.phone,vm.r_img_url)
-
     }
+    
+    // initiate loader for show
+    loader()
 
     //yes button function (logs the current business into our visits database)
     this.visit = new VisitFactory()
     this.sendVisit = function(){
-      this.visit.$save({name: vm.name, address:vm.addressJoin, phone: vm.phone, yelp_id: vm.yelp_id }).then(function(){
+      this.visit.$save({name: vm.name, address:vm.addressJoin, phone: vm.phone, yelp_id: vm.yelp_id }).then(
+        loader(),function(){
         $state.go("new")
       })
     }
