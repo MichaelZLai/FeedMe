@@ -73,7 +73,7 @@ http://localhost:8080/#/feedme
 | ----------- | :------------- | :---------- | :------------ | :----------------- |  
 |**Michael Lai**| https://github.com/MichaelZLai/FeedMe-FE | https://michaelzlai.github.io/FeedMe-FE/#/feedme |  https://github.com/MichaelZLai/FeedMe-BE|  https://feedme-be.herokuapp.com/
 |**Mark Sweet**|  https://github.com/marks828/project3_angular | https://marks828.github.io/#/feedme |  https://github.com/marks828/project3 | https://feedmerails.herokuapp.com/
-|**Mike Rubin**|  https://merubin.github.io/feedmefe/ | https://github.com/merubin/feedmefe/#/feedme  |  https://github.com/merubin/yelp |  https://yelp-backend-rails.herokuapp.com/
+|**Mike Rubin**| https://github.com/merubin/feedmefe |https://merubin.github.io/feedmefe/#/feedme  |  https://github.com/merubin/yelp |  https://yelp-backend-rails.herokuapp.com/
 
 
 
