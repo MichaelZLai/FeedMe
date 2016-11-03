@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-
+group :development do
+  gem "rails-erd"
+end
 gem 'rack-cors', :require => 'rack/cors'
 gem 'yelp', require: 'yelp'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
