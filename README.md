@@ -40,12 +40,13 @@ The back-end application provides a proxy-server to Yelp to feed the front-end f
 The FeedMe application is located on the gitHub repository.
 
 To install, clone a copy from github repository the username is MichaelZLai the repository is named FeedMe.git
+
 ```
 git clone git@github.com:MichaelZLai/FeedMe.git
 
 ```
 
-##Back-end Installation.
+## Back-end Installation.
 
 All of the Ruby Back-end code is located in the Yelp folder.
 To run the server locally, create the database with the following Rails Commands.
@@ -55,12 +56,29 @@ rails db:create
 rails db:migrate
 rails s
 
-##Front-end Installation.
+## Front-end Installation.
 cd <FEEDME> folder
 hs
 
 To begin the application go to the following URL:
 http://localhost:8080/#/feedme
+
+
+## Deployment.
+  Both the back-end and front-end have been fully deployed.  Each individual contributor has their own deployment site. The following are the deployment locations and URL's fore each contributor:
+
+
+
+|Contributor  | Front-end Repo | Front-end Host URL | Back-end Repo | Back-end Host URL |
+| ----------- | :------------- | :---------- | :------------ | :----------------- |  
+|**Michael Lai**| https://github.com/MichaelZLai/FeedMe-FE | https://michaelzlai.github.io/FeedMe-FE/#/feedme |  https://github.com/MichaelZLai/FeedMe-BE|  https://feedme-be.herokuapp.com/
+|**Mark Sweet**|  https://github.com/marks828/project3_angular | https://marks828.github.io/#/feedme |  https://github.com/marks828/project3 | https://feedmerails.herokuapp.com/
+|**Mike Rubin**|  https://merubin.github.io/feedmefe/ | https://github.com/merubin/feedmefe/#/feedme  |  https://github.com/merubin/yelp |  https://yelp-backend-rails.herokuapp.com/
+
+
+
+
+
 
 
 
@@ -73,13 +91,13 @@ http://localhost:8080/#/feedme
 
 [1] A review of the student suggestions for projects was reviewed by the project team.  Two candidate projects were reviewed, an Uber and a Restaurant picker.
 
-[2] Michael Lai was chosen to be the team's project manager.
+[2] Michael Lai was chosen to be the team's project manager. A new Slack Channel #feedme_project was created to track project status and keep import project documents.
 
 [3] A initial design of the front-end user interface was discussed and how each of the API's would be used.
 
 [4] It was decided that the back-end would communicate with Yelp as a proxy-server to our front-end.  The front-end would use MapBox's API directly with the array of businesses since the back-end had no need.
 
-[5] Initial work on the Mapbox interface was done by Mark Sweet.  Michael Lai did the initial Yelp Interface API investigation. Michael Rubin did work on the front-end switching to Next restaurant views.  During the coding, several different decisions were made as to which api set of the Mapbox interface.  Initial work with Mapbox began with the leaflet subset API set. Later the decision to use the newer Mapbox api set.
+[5] Initial work on the Mapbox interface was done by Mark Sweet.  Michael Lai did the initial Yelp Interface API investigation. Mike Rubin did work on the front-end switching to Next restaurant views.  During the coding, several different decisions were made as to which api set of the Mapbox interface.  Initial work with Mapbox began with the leaflet subset API set. Later the decision to use the newer Mapbox api set. As the project progressed, Mark initially worked on deployment which was turned over to Mike.  Michael continued working on CSS and looked at adding additional functionality.  Mike completed project documentation and deployment instructions.  
 
 [6]As a group, morning scrum status meetings were conducted to report on development, roadblocks, and status.  At noon a progress meeting was held to continue to refine the team's direction.  At the end of each day a review of day's status and progress.
 
