@@ -4,6 +4,8 @@
 }
 body{
   background-image: url(/images/chicken-skewers.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 /*Welcome Page*/
 .pages{
@@ -115,4 +117,14 @@ p{
   display: inline-block;
   font-size: 25px;
   margin: 30px 2px;
+}
+
+@media screen and (max-width: 480px){
+  body{
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  h1{
+    font-size: 2px;
+  }
 }
